@@ -36,7 +36,9 @@ class Solution {
         
         if(merged.length % 2 == 0){
             double ans = merged[merged.length / 2] + merged[-1 + merged.length / 2];
-            return ans / 2;
+            return ans / 2.0;
+            //2.0 c divide karna kyukin int/int always int dega bhale
+            //store kice mai bhi karwaye isliye ya Numertaor ya denominator ko double mai convert kar do
         }else{
             return merged[merged.length / 2];
         }
