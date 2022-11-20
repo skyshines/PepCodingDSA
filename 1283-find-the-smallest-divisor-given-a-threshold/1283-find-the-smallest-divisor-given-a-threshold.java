@@ -10,7 +10,7 @@ class Solution {
             return max;
         }
         
-        int lo = 0; int hi = max; int div = Integer.MAX_VALUE;
+        int lo = 1; int hi = max; int div = Integer.MAX_VALUE;
         
         while(lo <= hi){
             int mid = lo + (hi - lo) / 2;
@@ -30,7 +30,7 @@ class Solution {
         int sum = 0;
         
         for(int i = 0; i < arr.length; i++){
-            sum += Math.ceil(arr[i]*1.0 / div);
+            sum += (arr[i] - 1 + div)/div;
         }
         
         return sum <= threshold;
