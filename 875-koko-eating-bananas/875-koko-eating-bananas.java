@@ -10,7 +10,7 @@ class Solution {
             return max;
         }
         
-        int lo = 0; int hi = max; int speed = Integer.MAX_VALUE;
+        int lo = 0; int hi = max; int speed = 0;
         
         while(lo <= hi) {
             int mid = lo + (hi - lo) / 2; //since idhar array k index nhi balki unki value  concerned hai overflow ho sakta, so to avoid that we write like this
