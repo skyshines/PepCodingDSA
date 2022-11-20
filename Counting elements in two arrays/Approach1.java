@@ -89,6 +89,8 @@ class Solution
     }
 }
 /*
+time complexity O(mlog(m) sorting the second array + nlog(m) linear traversal in arr1 and binary search arr2) == o((m + n)log(m))
+
 1.Dosre array ka order matter nhi karta
 isliye arram c sort kar diya
 2.using binaryb search i found k required target c bada banda kha par hai
