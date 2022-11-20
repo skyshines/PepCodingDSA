@@ -92,3 +92,9 @@ class Solution
        return list;
     }
 }
+/*
+here space complexity will be dependent on max of arr1, given the constraints the max can till it can go is 10 ^ 5
+and again linear is also dependent on
+n + m + MAX + n
+which is linear
+*/
