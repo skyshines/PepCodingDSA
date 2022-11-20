@@ -38,4 +38,9 @@ class Solution {
         
         return hour;
     }
+    
+    /*
+    total += (p+m-1) / m equal to total += Math.ceil( p/m)
+    
+    */
 }
