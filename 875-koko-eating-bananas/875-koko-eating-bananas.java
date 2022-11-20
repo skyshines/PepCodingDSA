@@ -32,8 +32,8 @@ class Solution {
         int hour = 0;
         
         for(int i = 0; i < arr.length; i++){
-            //hour += (int)Math.ceil(arr[i]*1.0 / speed);
-            hour += arr[i] * 1.0 % speed == 0 ? arr[i] * 1.0 / speed : (arr[i] * 1.0/ speed) + 1; 
+            hour += (int)Math.ceil(arr[i]*1.0 / speed);
+            //hour += arr[i] * 1.0 % speed == 0 ? arr[i] * 1.0 / speed : (arr[i] * 1.0/ speed) + 1; time taking
         }
         
         return hour;
