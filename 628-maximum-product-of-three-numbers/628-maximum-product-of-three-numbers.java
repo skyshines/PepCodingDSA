@@ -12,11 +12,12 @@ class Solution {
         for(int val : nums){
             
             //for max
-            if(val > max1){
+            if(val >= max1){ //equal to aayega since max2 max3 to update ho jaye
+                            //par agar nhi lagyenge agli bar mai update ho jayega
                 max3 = max2;
                 max2 = max1;
                 max1 = val;
-            }else if(val > max2){
+            }else if(val >= max2){
                 max3 = max2;
                 max2 = val;
             }else if(val > max3){
@@ -25,7 +26,7 @@ class Solution {
             
             //for min
             
-            if(val < min1){
+            if(val <= min1){
                 min2 = min1;
                 min1 = val;
             }else if(val < min2){
