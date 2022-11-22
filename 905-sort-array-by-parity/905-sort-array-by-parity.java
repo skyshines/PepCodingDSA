@@ -13,8 +13,10 @@ class Solution {
                     nums[i] = nums[j];
                     nums[j] = temp;
                     i++;
-                }
+                    j--;
+                }else if(nums[j] % 2 == 1){
                 j--;
+                }
             }
         }
         
