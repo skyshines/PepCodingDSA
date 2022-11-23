@@ -5,7 +5,7 @@ class Solution {
         int count  = 0;
         for(int i = 2; i * i <= n; i++){
             if(isprime[i] == false){
-                for(int j = i + i; j < n; j += i){
+                for(int j = i*i; j < n; j += i){
                     isprime[j] = true;
                 }
             }
