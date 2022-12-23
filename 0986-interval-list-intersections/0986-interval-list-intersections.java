@@ -10,19 +10,13 @@ class Solution {
             if(cep >= csp){
                 Integer[] ans = {csp,cep};
                 arr.add(ans);
-                if(firstList[i][1] > secondList[j][1]){
-                    j++;
-                }else{
-                    i++;
-                }
-            }else{
-                if(firstList[i][1] > secondList[j][1]){
-                    j++;
-                }else{
-                    i++;
-                }
+                
             }
-            
+                if(firstList[i][1] > secondList[j][1]){
+                    j++;
+                }else{
+                    i++;
+                }
         }
         
         int[][] ans = new int[arr.size()][2];
