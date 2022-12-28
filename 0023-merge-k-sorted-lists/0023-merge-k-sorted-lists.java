@@ -59,24 +59,29 @@ class Solution {
         PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b)->{
             return a.val - b.val; // a = this, b = other, this lambda functions
 //tell priority queue to do this - other for default behavior which is min PQ
+            //O(1) 
         });
         
         for(ListNode node : lists){
-            if(node != null) pq.add(node);
+            if(node != null) pq.add(node); 
         }
+        // Pq mai k elements dalne k cost O(Klog(K)) can be even done in O(k) if we design our own priority queue
         
         ListNode dummy = new ListNode(-1);
         ListNode prev = dummy;
         
-        while(pq.size() > 0){
-            ListNode node = pq.remove();
+        while(pq.size() > 0){ // runs till all the nodes which are K*N
+            ListNode node = pq.remove(); // log(K);
             
             prev.next = node;
             prev = prev.next;
             
-            if(node.next != null) pq.add(node.next); 
+            if(node.next != null) pq.add(node.next); //log(K); 
         }
             
-        return dummy.next;    
+        return dummy.next;
+        // TC -> O(K*N(logK))
+        //space -> max elements in PQ at a time will be k
+        // so space will be O(k)
     }
 }
