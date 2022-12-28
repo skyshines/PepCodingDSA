@@ -47,9 +47,36 @@ class Solution {
         return mergeTwoLists(l1,l2);
     }
     
-    public ListNode mergeKLists(ListNode[] lists) {
+    public ListNode mergeKLists1(ListNode[] lists) {
       if(lists.length == 0)return null;
        
        return mergeKLists(lists,0,lists.length - 1); 
+    }
+    
+    public ListNode mergeKLists(ListNode[] lists) {
+      if(lists.length == 0) return null;
+       
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b)->{
+            return a.val - b.val; // a = this, b = other, this lambda functions
+//tell priority queue to do this - other for default behavior which is min PQ
+        });
+        
+        for(ListNode node : lists){
+            if(node != null) pq.add(node);
+        }
+        
+        ListNode dummy = new ListNode(-1);
+        ListNode prev = dummy;
+        
+        while(pq.size() > 0){
+            ListNode node = pq.remove();
+            
+            prev.next = node;
+            prev = prev.next;
+            
+            if(node.next != null) pq.add(node.next); 
+        }
+            
+        return dummy.next;    
     }
 }
