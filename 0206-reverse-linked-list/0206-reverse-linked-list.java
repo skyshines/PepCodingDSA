@@ -9,6 +9,39 @@
  * }
  */
 class Solution {
+    static ListNode th;
+    static ListNode tt;; //temp head and temp tail
+    
+    public void addFirst(ListNode node){
+        if(th == null){
+            th = tt = node;
+        }else{
+            node.next = th;
+            th = node;
+        }
+    }
+    
+    
+    
+    public ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null) return head;
+        tt = th = null;
+        ListNode curr = head;
+        ListNode fwd = null;
+        
+        while(curr != null){
+            fwd = curr.next;
+            curr.next = null;
+            addFirst(curr);
+            curr = fwd;
+        }
+        
+        return th;
+    }
+}
+
+/*
+class Solution {
     public ListNode iterativesolution(ListNode head){
         if(head == null || head.next == null) return head;
         
@@ -34,3 +67,6 @@ class Solution {
         return iterativesolution(head);
     }
 }
+
+
+*/
