@@ -12,7 +12,7 @@ class Node {
     }
 }
 */
-
+//linar time constant space
 class Solution {
     public void copyList(Node head){
         Node curr = head;
