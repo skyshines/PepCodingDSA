@@ -14,6 +14,55 @@ class Node {
 */
 
 class Solution {
+    public void copyList(Node head){
+        Node curr = head;
+        Node fwd = null;
+        
+        while(curr != null){
+            fwd = curr.next; //backup
+            
+            Node node = new Node(curr.val);
+            node.next = fwd;
+            curr.next = node;
+            curr = fwd;
+        }
+    }
+    
+    public Node copyRandomList(Node head) {
+        if(head == null) return null;
+        
+        //inserting new List in between the old given list
+        copyList(head);
+        
+        Node curr = head;
+        
+        while(curr != null){
+            Node node = curr.next; // copy list node
+            
+            Node random = curr.random; // original node ka random
+            
+            node.random = (random != null) ? random.next : null; // random ka next will have random of copy list, because every node of original list has thier copy node just nexrt to them;
+            
+            curr = curr.next.next;
+        }
+        
+        Node dummynode = new Node(-1);
+        Node prev = dummynode;
+        curr = head;
+        
+        while(curr != null){
+            prev.next = curr.next;
+            curr.next = curr.next.next;
+            
+            curr = curr.next;
+            prev = prev.next;
+        }
+        return dummynode.next;
+    }
+}
+/*
+//using hashmap linear time linear space
+class Solution {
     public Node copyRandomList(Node head) {
         if(head == null) return null;
         
@@ -47,3 +96,5 @@ class Solution {
         return head2;
     }
 }
+
+*/
