@@ -27,7 +27,20 @@ class Solution {
             curr = fwd;
         }
     }
-    
+    public Node extractDeepCopy(Node head){
+        Node dummynode = new Node(-1);
+        Node prev = dummynode;
+        Node curr = head;
+        
+        while(curr != null){
+            prev.next = curr.next;
+            curr.next = curr.next.next;
+            
+            curr = curr.next;
+            prev = prev.next;
+        }
+        return dummynode.next;
+    }
     public Node copyRandomList(Node head) {
         if(head == null) return null;
         
@@ -46,18 +59,7 @@ class Solution {
             curr = curr.next.next;
         }
         
-        Node dummynode = new Node(-1);
-        Node prev = dummynode;
-        curr = head;
-        
-        while(curr != null){
-            prev.next = curr.next;
-            curr.next = curr.next.next;
-            
-            curr = curr.next;
-            prev = prev.next;
-        }
-        return dummynode.next;
+        return extractDeepCopy(head);
     }
 }
 /*
