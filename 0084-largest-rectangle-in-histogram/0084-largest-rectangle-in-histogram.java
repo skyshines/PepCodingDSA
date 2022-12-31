@@ -1,4 +1,29 @@
 class Solution {
+    //linear space - one stack and linear time
+    public int largestRectangleArea(int[] heights) {
+        Stack<Integer> st = new Stack<>();
+        st.push(-1);
+        int max = 0;
+        for(int i = 0; i <= heights.length; i++){
+            int ht = i != heights.length ? heights[i] : 0;
+            while(st.peek() != -1 && heights[st.peek()] >= ht){
+                int height = heights[st.pop()];
+                int leftminimum = st.peek();
+                int rightminimum = i;
+                int area = height * (rightminimum - leftminimum - 1);
+                max = Math.max(area,max);
+            }
+            
+            st.push(i);
+        }
+        
+        return max;
+    }
+}
+
+/*
+//constant time linear space
+class Solution {
     public int largestRectangleArea(int[] heights) {
         //creating array of next smaller element left and right
         int[] nsl = new int[heights.length];
@@ -13,6 +38,7 @@ class Solution {
             
             while(st.size() > 0 && heights[st.peek()] >= heights[i]){
                 nsr[st.pop()] = i;
+                
             }
             nsl[i] = st.size() != 0 ? st.peek() : -1;
             st.push(i);
@@ -33,3 +59,5 @@ class Solution {
         return max;
     }
 }
+
+*/
