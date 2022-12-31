@@ -1,4 +1,5 @@
 class Solution {
+    //using linear space(stringbuilder) and linear time
     public String removeOuterParentheses(String s) {
         StringBuilder sb = new StringBuilder("");
         int opbr = 0;
