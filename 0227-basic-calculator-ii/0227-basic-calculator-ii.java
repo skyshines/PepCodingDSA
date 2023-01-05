@@ -24,18 +24,7 @@ class Solution {
                     
                     char op = operators.pop();
                     
-                    int val = 0;
-                    
-                    if(op == '+'){
-                        val = first + sec;
-                    }else if(op == '-'){
-                        val = first - sec;
-                    }else if(op == '*'){
-                        val = first * sec;
-                    }else if(op == '/'){
-                        val = first / sec;
-                    }
-                    
+                    int val = solve(op,first,sec);
                     operands.push(val);
                 }
                 
@@ -44,7 +33,7 @@ class Solution {
             
         }
         
-        int val = 0;
+        
         
         while(operators.size() > 0){
             
@@ -53,15 +42,7 @@ class Solution {
                     
             char op = operators.pop();
             
-            if(op == '+'){
-                    val = first + sec;
-            }else if(op == '-'){
-                    val = first - sec;
-            }else if(op == '*'){
-                    val = first * sec;
-            }else if(op == '/'){
-                    val = first / sec;
-            }
+            int val = solve(op,first,sec);
             
             operands.push(val);
             
@@ -76,5 +57,19 @@ class Solution {
         }else{
             return 1;
         }
+    }
+    
+    public int solve(char op, int first, int sec){
+        int val = 0;
+                    if(op == '+'){
+                        val = first + sec;
+                    }else if(op == '-'){
+                        val = first - sec;
+                    }else if(op == '*'){
+                        val = first * sec;
+                    }else if(op == '/'){
+                        val = first / sec;
+                    }
+        return val;        
     }
 }
