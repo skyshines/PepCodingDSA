@@ -33,9 +33,6 @@ class Solution
 {
     public static long countKdivPairs(int arr[], int n, int k)
     {
-        if(k == 1){
-            return n * (n - 1) / 2;
-        }
         
         int[] freq = new int[k];
         
