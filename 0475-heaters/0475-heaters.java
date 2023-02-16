@@ -1,22 +1,46 @@
 class Solution {
+    class Pair{
+        int jl = -1;
+        int js = -1;
+    }
+    
+    public Pair binarySearch(int[] arr,int target){
+        int lo = 0;
+        int hi = arr.length - 1;
+        Pair p = new Pair();
+        
+        while(lo <= hi){
+            int mid = lo + (hi - lo) / 2;
+            
+            if(arr[mid] == target){
+                p.jl = p.js = target;
+                return p;
+            }else if(arr[mid] > target){
+                p.jl = arr[mid];
+                hi = mid - 1;
+            }else{
+                p.js = arr[mid];
+                lo = mid + 1;
+            }
+        }
+        
+        return p;
+    }
+    
     public int findRadius(int[] houses, int[] heaters) {
-        TreeSet<Integer> ts = new TreeSet<>();
+        Arrays.sort(heaters);
         
-        for(int val : heaters) ts.add(val);
-        
-        
-        int ans = -1;
+        int ans = 0;
         
         for(int house : houses){
-            int hp = Integer.MAX_VALUE;
-            Integer ceil = ts.ceiling(house);
-            if(ceil != null) hp = (int)Math.min(hp,ceil - house);
+            Pair p = binarySearch(heaters,house);
             
-            Integer floor = ts.floor(house);
-            if(floor != null) hp = (int)Math.min(hp,house - floor);
+            int dl = (p.js == -1) ? Integer.MAX_VALUE : house - p.js;
+            int dr = (p.jl == -1) ? Integer.MAX_VALUE : p.jl - house;
             
-            ans = (int)Math.max(ans,(int)Math.abs(hp));
+            ans = (int)Math.max((int)Math.min(dl,dr),ans);
         }
+        
         return ans;
     }
 }
