@@ -5,13 +5,11 @@ class Solution {
         st.push(-1);
         int max = 0;
         for(int i = 0; i <= heights.length; i++){
-            int ht = i != heights.length ? heights[i] : 0;
-            while(st.peek() != -1 && heights[st.peek()] >= ht){
-                int height = heights[st.pop()];
-                int leftminimum = st.peek();
-                int rightminimum = i;
-                int area = height * (rightminimum - leftminimum - 1);
-                max = Math.max(area,max);
+            int ht = (i == heights.length) ? 0 : heights[i];
+            while(st.size() > 0 && st.peek() != -1 && heights[st.peek()]  >= ht){
+                int h = (st.peek() == -1) ? 0 : heights[st.peek()]; st.pop();
+                int width = i - st.peek() - 1;
+                max = (int)Math.max(max,h * width);
             }
             
             st.push(i);
