@@ -1,36 +1,36 @@
 class StockSpanner {
     class Pair{
-        int price;
-        int index;
+        int val;
+        int idx;
         
-        Pair(int price, int index){
-            this.price = price;
-            this.index = index;
+        Pair(int v,int i){
+            val = v; idx = i;
         }
     }
     
     static Stack<Pair> st;
-    static int count;
+    static int i;
     
     public StockSpanner() {
         st = new Stack<>();
-        count = 0;
-        int max = 1000000; // max price can go is 10^5 so we just pushed one number bigger than that
-        //pushing max with index 0 and incrementing count;
-        st.push(new Pair(max,0));
+        i = 0;
     }
     
     public int next(int price) {
+        //pop
+        while(st.size() > 0 && st.peek().val <= price) st.pop();
         
-        while(st.peek().price <= price){
-            st.pop();
+        int ans;
+        
+        if(st.size() == 0){
+            ans = i + 1;
+        }else{
+            ans = i - st.peek().idx;
         }
         
+        st.push(new Pair(price,i));
         
-        count++;
-        int ans = count - st.peek().index;
-        
-        st.push(new Pair(price,count));
+        i++;
         
         return ans;
     }
