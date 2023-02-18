@@ -15,7 +15,6 @@ class Solution {
             }
         }
         
-        if(i <= j) return j - i + 1;
-        else return 0;
+        return j - i + 1;
     }
 }
