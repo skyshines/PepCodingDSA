@@ -43,7 +43,7 @@ class Solution {
             while(arr[k] == '.') k++;
             
             //solving tyhe segment
-            solve(arr, j , k);
+            if(k - j > 1) solve(arr, j , k);
             
             //moving to next segment
             j = k;
