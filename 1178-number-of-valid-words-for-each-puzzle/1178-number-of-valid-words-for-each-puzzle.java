@@ -20,6 +20,7 @@ class Solution {
             }
             
             HashSet<Character> hs = new HashSet<>();
+            //HashSet to avoid duplicay of char, because letters could repeat
             
             for(char ch : word.toCharArray()){
                 if(hs.contains(ch)) continue;
