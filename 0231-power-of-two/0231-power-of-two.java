@@ -1,10 +1,10 @@
 class Solution {
     public boolean isPowerOfTwo(int n) {
+        //Solved Using Bit Manipulation
+        //power of 2 has only one set bit
+        //n - 1 will turn on the bits after that bit adn will make that bit OFF in n - 1
+        //taking and if ans 0 then number power of two otherwise not
         if(n <= 0) return false;
-        if(n == 1) return true;
-        
-        while(n % 2 == 0) n = n / 2;
-        
-        return n == 1;
+        return (n & n - 1) == 0b0;
     }
 }
