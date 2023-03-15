@@ -22,7 +22,11 @@ class Solution {
         }
         
         for(String str : hm.keySet()){
-            ans.add(hm.get(str) + " " + str);
+            StringBuilder sb = new StringBuilder("");
+            sb.append(hm.get(str));
+            sb.append(" ");
+            sb.append(str);
+            ans.add(sb.toString());
         }
         
         return ans;
