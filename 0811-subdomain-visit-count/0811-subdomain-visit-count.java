@@ -17,7 +17,9 @@ class Solution {
                     subdomain.insert(0,words[i] + ".");
                 }
                 
-                hm.put(subdomain.toString(),hm.getOrDefault(subdomain.toString(), 0) + visitCount);
+                String codomain = subdomain.toString();
+                
+                hm.put(codomain,hm.getOrDefault(codomain, 0) + visitCount);
             }
         }
         
