@@ -10,8 +10,11 @@ class Solution {
             for(int i = 0; i < list.size() - 1; i++){
                 ps += list.get(i);
                 hm.put(ps,hm.getOrDefault(ps,0) + 1);
-                max = hm.get(ps) > max ? hm.get(ps) : max;
             }
+        }
+        
+        for(int val : hm.values()){
+            max = max > val ? max : val;
         }
         
         return wall.size() - max;
