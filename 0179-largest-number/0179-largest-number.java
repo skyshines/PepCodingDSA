@@ -3,7 +3,7 @@ class Solution {
         String[] arr = new String[nums.length];
         
         for(int i = 0; i < nums.length; i++){
-            arr[i] = "" + nums[i];
+            arr[i] = Integer.toString(nums[i]);
         }
         
         Arrays.sort(arr,(a,b)->{
@@ -32,13 +32,11 @@ class Solution {
         
         for(int i = arr.length - 1; i >= 0; i--){
             sb.append(arr[i]);
-            
-            if(sb.charAt(0) == '0'){
-                return "0";
-            }
         }
         
-        
+        if(sb.charAt(0) == '0'){
+            return "0";
+        }
         
         return sb.toString();
     }
