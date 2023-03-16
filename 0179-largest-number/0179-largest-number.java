@@ -7,8 +7,17 @@ class Solution {
         }
         
         Arrays.sort(arr,(a,b)->{
-            long apb = Long.parseLong(a + b);
-            long bpa = Long.parseLong(b + a);
+            StringBuilder sb = new StringBuilder();
+            sb.append(a);
+            sb.append(b);
+            
+            long apb = Long.parseLong(sb.toString());
+            
+            sb = new StringBuilder();
+            sb.append(b);
+            sb.append(a);
+            
+            long bpa = Long.parseLong(sb.toString());
             
             if(apb > bpa){
                 return 1;
@@ -23,11 +32,13 @@ class Solution {
         
         for(int i = arr.length - 1; i >= 0; i--){
             sb.append(arr[i]);
+            
+            if(sb.charAt(0) == '0'){
+                return "0";
+            }
         }
         
-        if(sb.charAt(0) == '0'){
-            return "0";
-        }
+        
         
         return sb.toString();
     }
