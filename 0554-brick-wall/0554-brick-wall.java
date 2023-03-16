@@ -10,7 +10,7 @@ class Solution {
             for(int i = 0; i < list.size() - 1; i++){
                 ps += list.get(i);
                 hm.put(ps,hm.getOrDefault(ps,0) + 1);
-                max = (int)Math.max(max, hm.get(ps)); 
+                max = hm.get(ps) > max ? hm.get(ps) : max;
             }
         }
         
