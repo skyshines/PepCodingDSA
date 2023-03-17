@@ -6,13 +6,13 @@ class Solution {
             hm.put(val, hm.getOrDefault(val, 0) + 1);
         }
         
-        int gcd = 0;
+        int ans = 0;
         
         for(int val : hm.values()){
-            gcd = gcd(gcd, val);
+            ans = gcd(ans, val);
         }
         
-        return gcd > 1;
+        return ans > 1;
     }
     
     public int gcd(int a, int b){
