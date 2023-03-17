@@ -16,16 +16,10 @@ class Solution {
     }
     
     public int gcd(int a, int b){
-        if(a * b == 0){
-            return a == 0 ? b : a;
+        if(b == 0){
+            return a;
         }
         
-        while(b % a > 0){
-            int t = a;
-            a = b % a;
-            b = t;
-        }
-        
-        return a;
+        return gcd(b, a % b);
     }
 }
