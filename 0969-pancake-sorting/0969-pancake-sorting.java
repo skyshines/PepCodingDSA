@@ -12,7 +12,7 @@ class Solution {
     public List<Integer> pancakeSort(int[] arr) {
         List<Integer> ans = new ArrayList<>();
         
-        for(int i = arr.length - 1; i >= 1; i--){
+        for(int i = arr.length - 1; i >= 0; i--){
             int maxIdx = i;
             
             for(int j = i - 1; j >= 0; j--){
