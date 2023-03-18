@@ -3,6 +3,28 @@ class Solution {
         
         
         Arrays.sort(nums);
+        int mod = (int)1e9 + 7;
+        long ans = 0L;
+        int n = nums.length;
+        long pow = 1;
+      
+        for(int i = 0; i < nums.length; i++){
+            ans += (nums[i] * pow - (nums[n - i - 1] * pow)); 
+            ans %= mod;
+            pow = (pow * 2) % mod;
+        }    
+            
+        return (int)((ans + mod) % mod);    
+    }
+}
+
+/*
+
+class Solution {
+    public int sumSubseqWidths(int[] nums) {
+        
+        
+        Arrays.sort(nums);
         int mod = 1000000007;
         long ans = 0L;
         int n = nums.length;
@@ -24,3 +46,5 @@ class Solution {
         return (int)(ans);    
     }
 }
+
+*/
