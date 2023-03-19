@@ -17,8 +17,9 @@ class Solution {
         //Mapping elements with index
         
         for(int i = 0; i < nums.length; i++){
+            //purifying index
             int idx = (int)Math.abs(nums[i]) - 1;
-            
+            //marking elemt present by keeping negative value
             if(nums[idx] > 0) nums[idx] *= -1;
         }
         
