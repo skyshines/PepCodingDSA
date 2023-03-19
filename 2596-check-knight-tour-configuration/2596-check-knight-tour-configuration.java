@@ -11,7 +11,7 @@ class Solution {
             return true;
         }
         
-        for(int k = 7; k >= 0; k--){
+        for(int k = 0; k < 8; k++){
             if(helper(i + iarr[k],j + jarr[k],move + 1,grid)){
                 return true;
             }
