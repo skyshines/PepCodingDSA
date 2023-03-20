@@ -1,6 +1,6 @@
 class Solution {
     public int maxProduct(int[] nums) {
-        int ans = Integer.MIN_VALUE;
+        int ans = -200000;
         int product = 1;
         
         //for left starting subarray
