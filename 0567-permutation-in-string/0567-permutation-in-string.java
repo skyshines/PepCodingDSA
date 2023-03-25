@@ -29,7 +29,7 @@ class Solution {
             
             secondmap[s2.charAt(i) - 'a']++;
             
-            if(isEqual(firstmap, secondmap)){
+            if(i >= s1.length() - 1 && isEqual(firstmap, secondmap)){
                 return true;
             }
         }
