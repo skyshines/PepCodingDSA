@@ -2,7 +2,7 @@ class Solution {
     public int maxChunksToSorted(int[] arr) {
         int[] rmin = new int[arr.length + 1];
         
-        rmin[rmin.length - 1] = (int)1e8;
+        rmin[rmin.length - 1] = (1 << 31) - 1;
         
         for(int i = arr.length - 1; i >= 0; i--){
             rmin[i] = arr[i] > rmin[i + 1] ? rmin[i + 1] : arr[i];
