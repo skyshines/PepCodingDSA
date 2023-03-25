@@ -2,25 +2,26 @@ class Solution {
     public int partitionDisjoint(int[] nums) {
         if(nums.length < 2) return 0;
         
-        int[] leftmax = new int[nums.length - 1];
+        int[] rmin = new int[nums.length];
         
-        int max = 0;
+        int min = 1000000;
         
-        for(int i = 0; i < leftmax.length; i++){
-            if(nums[i] > max) max = nums[i];
+        for(int i = rmin.length - 1; i >= 0; i--){
+            if(nums[i] < min) min = nums[i];
             
-            leftmax[i] = max;
+            rmin[i] = min;
         }
         
-        int rmin = nums[nums.length - 1];
-        int ans = 0;
+        int leftmax = nums[0];
         
-        for(int i = leftmax.length - 1; i >= 0; i--){
-            if(leftmax[i] <= rmin) ans = i + 1;
+        for(int i = 0; i <= nums.length - 2; i++){
+            if(leftmax <= rmin[i + 1]){
+                return i + 1;
+            }
             
-            if(nums[i] < rmin) rmin = nums[i];
+            if(leftmax < nums[i]) leftmax = nums[i];
         }
         
-        return ans;
+        return 1;
     }
 }
