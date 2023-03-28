@@ -15,6 +15,7 @@
  */
 
 class Solution {
+    //Using class, best for OA, less readable
     public int[] rob_(TreeNode node) {
         if(node == null) return new int[]{0,0};
         
@@ -42,7 +43,7 @@ class Solution {
 
 /*
 
-//using Class
+//using Class (best for interview, more Readable Code, Better Explanantion plus understanding)
 class Solution {
     class housePair{
         int withRobbery = 0;
