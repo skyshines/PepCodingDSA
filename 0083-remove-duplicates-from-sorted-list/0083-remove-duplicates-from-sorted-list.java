@@ -10,8 +10,9 @@
  */
 class Solution {
     //Approach 2, Using Add Last always use add last, add first so that less mistakes
-    static ListNode tempHead;
-    static ListNode tempTail;
+    //faltu nodes removed
+    static ListNode tempHead = new ListNode();
+    static ListNode tempTail = new ListNode();
     
     public void addLast(ListNode node){
         if(tempTail == null){
@@ -22,12 +23,11 @@ class Solution {
         }
         
     }
-    public ListNode deleteDuplicates2(ListNode head) {
+    public ListNode deleteDuplicates(ListNode head) {
         //Base Case, Handle this Always
         if(head == null || head.next == null) return head;
         
-        tempHead = new ListNode();
-        tempTail = new ListNode();
+        tempHead = tempTail = null;
         
         ListNode itr = head;
         
@@ -47,7 +47,7 @@ class Solution {
     }
     
     //Approach one
-    public ListNode deleteDuplicates(ListNode head) {
+    public ListNode deleteDuplicates1(ListNode head) {
         //Base Case, Handle this Always
         if(head == null || head.next == null) return head;
         
