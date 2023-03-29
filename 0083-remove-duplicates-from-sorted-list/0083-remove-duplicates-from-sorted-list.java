@@ -59,11 +59,12 @@ class Solution {
         while(curr != null){
             while(curr != null && itr.val == curr.val){ 
                 //possible that while loop made curr null, so have to break it
-                prev = curr;
+                if(prev == null) prev = curr;
                 curr = curr.next;
             }
             
-            prev.next = null;
+            
+            if(prev != null){ prev.next = null; prev = null;}
             
             //if last part had same elements, make sure to point itr to null
             itr.next = curr;
