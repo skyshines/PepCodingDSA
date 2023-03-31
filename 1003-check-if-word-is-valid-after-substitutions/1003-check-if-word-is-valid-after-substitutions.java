@@ -4,16 +4,8 @@ class Solution {
         
         for(char ch : s.toCharArray()){
             if(ch == 'c'){
-                if(st.size() >= 2){
-                    if(st.peek() == 'b') st.pop();
-                    else{
-                        return false;
-                    }
+                if(st.size() >= 2 && st.pop() == 'b' && st.pop() == 'a'){
                     
-                    if(st.peek() == 'a') st.pop();
-                    else{
-                        return false;
-                    }
                 }else{
                     return false;
                 }
