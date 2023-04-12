@@ -14,13 +14,11 @@ class Solution {
             return true;
         }
         
-        if(visited[src] == true){
-            return false;
-        }
-        
         visited[src] = true;
         
         for(Edge edge : graph[src]){
+            if(visited[edge.nbr] == true) continue;
+            
             boolean nbrHasPath = hasPath(graph, edge.nbr, dest, visited);
             
             if(nbrHasPath == true){
