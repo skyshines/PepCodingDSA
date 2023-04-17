@@ -16,7 +16,7 @@ class Solution {
                 }
                 
                 if(dp[i][j] == true){
-                    if(gap + 1 > ans){
+                    if(true){
                         ans = gap + 1;
                         startIndex = i;
                         endIndex = j;
