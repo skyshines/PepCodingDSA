@@ -46,11 +46,32 @@ class Solution {
         return dp[n];
     }
     
+    public int fibImp(int n){
+        if(n == 0 || n == 1){
+            return n;
+        }
+        
+        int a = 1;
+        int b = 0;
+        
+        int i = 2;
+        
+        while(i++ <= n){
+            int na = a + b;
+            int nb = a;
+            
+            a = na;
+            b = nb;
+        }
+        
+        return a;
+    }
     
     public int fib(int n) {
        //return fibRecurrsive(n);
        //return fibMemoization(n, new int[n + 1]);
-        return fibTabulation(n);
+        //return fibTabulation(n);
+        return fibImp(n);
         
     }
 }
