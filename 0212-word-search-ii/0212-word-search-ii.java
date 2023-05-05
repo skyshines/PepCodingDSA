@@ -2,10 +2,12 @@ class Solution {
     public class Node{
         Node[] childs;
         String str;
+        int count;
 
         Node(){
             childs = new Node[26];
             str = null;
+            count = 0;
         }
         
         
@@ -18,6 +20,7 @@ class Solution {
                 curr.childs[ch - 'a'] = new Node();
             }
             
+            curr.count++;
             curr = curr.childs[ch - 'a'];
         }
         
@@ -51,9 +54,10 @@ class Solution {
         }else{
             Node child = curr.childs[board[i][j] - 'a'];
             
+            
             if(child.str != null){
                 ans.add(child.str);
-                child.str = null;
+                child.str = null; 
             } 
             
             //marking visited
@@ -64,12 +68,16 @@ class Solution {
                 int rowdash = i + dir[0];
                 int coldash = j + dir[1];
                 
-                if(rowdash < 0 || coldash < 0 || rowdash >= board.length || coldash >= board[0].length || visited[rowdash][coldash] == true) continue;
+                if(rowdash < 0 || coldash < 0 || rowdash >= board.length || coldash >= board[0].length || visited[rowdash][coldash] == true || curr.count == 0) continue;
                 
                 dfs(board, rowdash, coldash, child, ans, visited);
             }
             
             visited[i][j] = false;
+            
+            if(child.count == 0){
+                curr.count--;
+            }
         }
     }
 }
