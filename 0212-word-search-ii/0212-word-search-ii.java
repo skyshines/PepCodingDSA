@@ -56,30 +56,36 @@ class Solution {
          
             if(child.str != null){
                 ans.add(child.str);
-                child.str = null; 
+                child.str = null;
+                
+                if(child.count == 0){
+                    curr.count--;
+                    return;
+                }
             } 
             
             if(child.count == 0){
                 return;
             }
-            
+
             //marking visited
             visited[i][j] = true;
-            
+
             //call to 4 adjacent sides
             for(int[] dir : dirs){
                 int rowdash = i + dir[0];
                 int coldash = j + dir[1];
-                
+
                 if(rowdash < 0 || coldash < 0 || rowdash >= board.length || coldash >= board[0].length || visited[rowdash][coldash] == true) continue;
-                
+
                 dfs(board, rowdash, coldash, child, ans, visited);
             }
-            
+
             visited[i][j] = false;
             
-            
-            if(child.count == 0) curr.count--;
+            if(child.count == 0){
+                curr.count--;
+            }
         }
     }
 }
