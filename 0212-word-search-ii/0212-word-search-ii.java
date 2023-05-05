@@ -39,7 +39,7 @@ class Solution {
         
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[0].length; j++){
-                dfs(board, i, j, root,ans, visited);
+                if(root.count > 0) dfs(board, i, j, root,ans, visited);
             }
         }
         
@@ -49,20 +49,20 @@ class Solution {
     int[][] dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
     
     public void dfs(char[][] board, int i, int j,Node curr,List<String> ans, boolean[][] visited){
-        if(curr.childs[board[i][j] - 'a'] == null || curr.count == 0){
+        if(curr.childs[board[i][j] - 'a'] == null){
             return;
         }else{
             Node child = curr.childs[board[i][j] - 'a'];
-            
-            
-            
+         
             if(child.str != null){
                 ans.add(child.str);
                 child.str = null; 
             } 
+            
             if(child.count == 0){
                 return;
             }
+            
             //marking visited
             visited[i][j] = true;
             
