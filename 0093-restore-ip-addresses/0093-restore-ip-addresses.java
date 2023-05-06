@@ -19,15 +19,15 @@ class Solution {
             asf = asf + ".";
         }
         
-        if(true){
+        if(noOfPartitionsSoFar < 4){
             helper(s, index + 1, noOfPartitionsSoFar + 1, asf + s.substring(index, index + 1));
         }
         
-        if((index + 2 <= s.length()) && s.charAt(index) != '0'){
+        if(noOfPartitionsSoFar < 4 && (index + 2 <= s.length()) && s.charAt(index) != '0'){
             helper(s, index + 2, noOfPartitionsSoFar + 1, asf + s.substring(index, index + 2));
         }
         
-        if((index + 3 <= s.length()) && s.charAt(index) != '0'){
+        if(noOfPartitionsSoFar < 4 && (index + 3 <= s.length()) && s.charAt(index) != '0'){
             String add = s.substring(index, index + 3);
             
             if(Integer.parseInt(add) <= 255){
