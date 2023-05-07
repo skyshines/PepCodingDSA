@@ -37,9 +37,10 @@ class Solution {
             
             //update ans and release
             while(j < i && matchCount == desiredMatchCount){
-                String potentialAns = s.substring(j + 1, i + 1);
+                int potentialAnsLength = i - j;
                 
-                if(ans.length() == 0 || ans.length() > potentialAns.length()){
+                if(ans.length() == 0 || ans.length() > potentialAnsLength){
+                    String potentialAns = s.substring(j + 1, i + 1);
                     ans = potentialAns;
                 }
                 
