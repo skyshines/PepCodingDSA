@@ -31,9 +31,6 @@ class Solution {
                 if(pq.peek().gap > gap){
                     pq.remove();
                     pq.add(new Pair(val, gap));
-                }else if(pq.peek().gap == gap && pq.peek().val > val){
-                    pq.remove();
-                    pq.add(new Pair(val, gap));
                 }
             }
         }
