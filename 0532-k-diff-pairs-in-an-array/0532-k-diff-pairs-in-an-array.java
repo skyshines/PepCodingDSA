@@ -18,7 +18,7 @@ class Solution {
                 while(j < arr.length && arr[j] == arr[j - 1]) j++;
                 while(i < arr.length && arr[i] == arr[i - 1]) i++;
                 
-            }else if(arr[j] - arr[i] < k){
+            }else if(k == 0 || arr[j] - arr[i] < k){
                 j++;
             }else{
                 i++;
