@@ -13,7 +13,7 @@ class Solution {
                     int rightCount = hi - mid + 1;
                     
                     if(rightCount % 2 == 1){
-                        lo = mid;
+                        lo = mid + 2;
                     }else{
                         hi = mid - 1;
                     }
@@ -21,7 +21,7 @@ class Solution {
                     int leftCount = mid - lo + 1;
                     
                     if(leftCount % 2 == 1){
-                        hi = mid;
+                        hi = mid - 2;
                     }else{
                         lo = mid + 1;
                     }
