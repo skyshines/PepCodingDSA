@@ -1,24 +1,16 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        int tn = ~(0);
-        int tnp1 = 0;
-        int tnp2 = 0;
+        int one = 0;
+        int two = 0;
         
         for(int num : nums){
-            int cwtn = (tn & num);
-            int cwtnp1 = (tnp1 & num);
-            int cwtnp2 = (tnp2 & num);
+            int ntwo = (num & one) + (~num & two);
+            int none = (~num & one) + (num & ~one & ~two);
             
-            tn = (tn & (~cwtn));
-            tnp1 = (tnp1 | cwtn);
-            
-            tnp1 = (tnp1 & ~(cwtnp1));
-            tnp2 = (tnp2 | (cwtnp1));
-            
-            tnp2 = (tnp2 & ~cwtnp2);
-            tn = (tn | cwtnp2);
+            one = none;
+            two = ntwo;
         }
         
-        return tnp1;
+        return one;
     }
 }
