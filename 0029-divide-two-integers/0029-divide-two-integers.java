@@ -33,7 +33,7 @@ class Solution {
         while(a >= b){
             int q = 0;
             
-            while(q + 1 <= 30 && a >= (b << (q + 1))){
+            while(a >= (b << (q + 1))){
                 q++;
             }
             
