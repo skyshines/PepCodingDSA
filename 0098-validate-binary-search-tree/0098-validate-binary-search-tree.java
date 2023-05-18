@@ -14,27 +14,40 @@
  * }
  */
 class Solution {
-    static TreeNode prev;
-    
-    public boolean rec(TreeNode node){
-        if(node == null){
-            return true;
+    public TreeNode getRightMostNode(TreeNode leftNode, TreeNode curr){
+        
+        while(leftNode.right != null && leftNode.right != curr){
+            leftNode = leftNode.right;
         }
         
-        if(rec(node.left) == false) return false;
-        
-        if(prev != null && prev.val >= node.val){
-            return false;
-        }
-        
-        prev = node;
-        
-        if(rec(node.right) == false) return false;
-        
-        return true;
+        return leftNode;
     }
     public boolean isValidBST(TreeNode root) {
-        prev = null;
-        return rec(root);
+        TreeNode curr = root;
+        TreeNode prev = null;
+        
+        while(curr != null){
+            TreeNode leftNode = curr.left;
+            
+            if(leftNode == null){
+                if(prev !=  null && prev.val >= curr.val) return false;
+                prev = curr;
+                curr = curr.right;
+            }else{
+                TreeNode rightMostNode = getRightMostNode(leftNode, curr);
+                
+                if(rightMostNode.right == null){
+                    rightMostNode.right = curr;
+                    curr = curr.left;
+                }else{
+                    rightMostNode.right = null;
+                    if(prev !=  null && prev.val >= curr.val) return false;
+                    prev = curr;
+                    curr = curr.right;
+                }
+            }
+        }
+        
+        return true;
     }
 }
