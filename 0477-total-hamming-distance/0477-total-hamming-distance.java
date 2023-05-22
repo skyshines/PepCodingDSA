@@ -1,22 +1,19 @@
 class Solution {
     public int totalHammingDistance(int[] nums) {
-        long ans = 0;
+        int ans = 0;
         
         for(int i = 0; i < 32; i++){
-            long countOn = 0;
-            long countOff = 0;
+            int countOn = 0;
             
             for(int num : nums){
-                if((num & (1 << i)) == 0){
-                    countOff++;
-                }else{
+                if((num & (1 << i)) != 0){
                     countOn++;
                 }
             }
             
-            ans += (countOn * countOff);
+            ans += (countOn * (nums.length - countOn));
         }
         
-        return (int)ans;
+        return ans;
     }
 }
