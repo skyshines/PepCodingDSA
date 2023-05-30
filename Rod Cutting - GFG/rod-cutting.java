@@ -51,6 +51,9 @@ class Solution{
                 if(dp[left] + dp[right] > dp[i]){
                     dp[i] = dp[left] + dp[right];
                 }
+                
+                left++;
+                right--;
             }
         }
     }
@@ -68,7 +71,7 @@ class Solution{
         dp[0] = 0;
         dp[1] = newPrice[1];
         
-        cutStrategy(dp, newPrice);
+        leftRightStrategy(dp, newPrice);
         
         return dp[dp.length - 1];
     }
