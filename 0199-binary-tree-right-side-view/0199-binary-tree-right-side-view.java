@@ -23,12 +23,13 @@ class Solution {
       
       while(queue.size() != 0){
           int size = queue.size();
-          ans.add(queue.getLast().val);
+          ans.add(queue.getFirst().val);
           
           while(size-- > 0){
               TreeNode node = queue.removeFirst();
-              if(node.left != null) queue.addLast(node.left);
+              
               if(node.right != null) queue.addLast(node.right);
+              if(node.left != null) queue.addLast(node.left);
           }
       }
       
