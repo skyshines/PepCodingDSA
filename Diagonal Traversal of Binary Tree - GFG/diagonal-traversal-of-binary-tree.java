@@ -134,7 +134,7 @@ class Tree
            while(queue.size() > 0){
                int size = queue.size();
                
-               while(size-- > 0){
+               
                    Node rem = queue.removeFirst();
                    
                    Node temp = rem;
@@ -144,7 +144,7 @@ class Tree
                        if(temp.left != null) queue.addLast(temp.left);
                        temp = temp.right;
                    }
-               }
+               
            }
            
            return ans;
