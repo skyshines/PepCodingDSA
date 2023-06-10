@@ -122,29 +122,22 @@ class Node{
 }
 */
 class Tree {
-    public static ArrayList <Integer> diagonalSum(Node root) 
-    {
-        ArrayList<Integer> ans = new ArrayList<>();
-        LinkedList<Node> queue = new LinkedList<>();
-        queue.addLast(root);
+    public void dfs(Node node,int diagNo,ArrayList<Integer> ans){
+        if(node == null) return;
         
-        while(queue.size() > 0){
-            int size = queue.size();
-            int sum = 0;
-            
-            while(size-- > 0){
-                Node rem = queue.removeFirst();
-                
-                while(rem != null){
-                    sum += rem.data;
-                    if(rem.left != null) queue.addLast(rem.left);
-                    rem = rem.right;
-                }
-            }
-            
-            ans.add(sum);
+        if(diagNo == ans.size()){
+            ans.add(0);
         }
         
+        ans.set(diagNo, ans.get(diagNo) + node.data);
+        
+        dfs(node.left, diagNo + 1, ans);
+        dfs(node.right, diagNo, ans);
+    }
+    public ArrayList <Integer> diagonalSum(Node root) 
+    {
+        ArrayList<Integer> ans = new ArrayList<>();
+        dfs(root,0,ans);
         return ans;
     }
 }
