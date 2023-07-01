@@ -105,6 +105,7 @@ class Solution
         for(int i = 0; i < dict.length - 1; i++){
             String curr = dict[i];
             String next = dict[i + 1];
+            boolean mismatchFound = false;
             
             int len = Math.min(curr.length(), next.length());
             
@@ -124,11 +125,15 @@ class Solution
                         indegree.put(ch2, indegree.get(ch2) + 1);
                         graph.put(ch1, hs);
                     }
-                    
+                    mismatchFound = true;
                     break;
                 }
                 
                 
+            }
+            
+            if(mismatchFound == false && curr.length() > next.length()){
+                    return "";
             }
         }
         
@@ -161,6 +166,12 @@ class Solution
                 }
             }
         }
-        return sb.toString();
+        
+        if(countOfCharacters == countOfRemovedElements){
+            return sb.toString();
+        }else{
+            return "";
+        }
+        
     }
 }
