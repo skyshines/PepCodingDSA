@@ -51,14 +51,10 @@ class Solution{
 	    }
 	    
 	    for(int[] arr : edges){
-	        int lu = find(arr[0]);
-	        int lv = find(arr[1]);
-	        
-	        if(lu == lv) continue;
-	        
-	        union(lu, lv);
-	        
-	        ans += arr[2];
+	        boolean flag = union(arr[0], arr[1]);
+	        if(flag == true){
+	            ans += arr[2];
+	        }
 	    }
 	    
 	    return ans;
@@ -74,7 +70,7 @@ class Solution{
 	    return temp;
 	}
 	
-	public static void union(int x, int y){
+	public static boolean union(int x, int y){
 	    int leaderX = find(x);
 	    int leaderY = find(y);
 	    
@@ -87,6 +83,10 @@ class Solution{
 	            par[leaderX] = leaderY;
 	            rank[leaderY]++;
 	        }
+	        
+	        return true;
+	    }else{
+	        return false;
 	    }
 	}
 }
