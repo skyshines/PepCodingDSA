@@ -1,40 +1,55 @@
 class Solution {
-    public boolean isEqual(int[] arr1, int[] arr2){
-        for(int i = 0; i < arr1.length; i++){
-            if(arr1[i] != arr2[i]){
+    public boolean compare(int[] hm1,int[] hm2){
+        for(int i = 0; i < 26; i++){
+            if(hm1[i] != hm2[i]){
                 return false;
             }
         }
         
         return true;
     }
-    public List<Integer> findAnagrams(String s2, String s1) {
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> ans = new ArrayList<>();
         
-        ArrayList<Integer> ans = new ArrayList<>();
+        if(p.length() > s.length()) return ans;
         
-        if(s1.length() > s2.length()) return ans;
+        int[] sm = new int[26]; // sourceMap
+        int[] pm = new int[26]; // pattern Map
         
-        int[] firstmap = new int[26];
-        int[] secondmap = new int[26];
-        
-        for(char ch : s1.toCharArray()){
-            firstmap[ch - 'a']++;
+        //filling sourceMap, patternMap with p.length() size
+        for(int i = 0; i < p.length(); i++){
+            char ch = s.charAt(i);
+            sm[ch - 'a']++;
         }
         
+        for(int i = 0; i < p.length(); i++){
+            char ch = p.charAt(i);
+            pm[ch - 'a']++;   
+        }
         
-        for(int i = 0; i < s2.length(); i++){
-            if(i >= s1.length()){
-                //release frequncy of i - s1.length character
-                secondmap[s2.charAt(i - s1.length()) - 'a']--;
+        //get ans,acquuire ith character,release i - p.length() character
+        int i = p.length();
+        
+        while(i < s.length()){
+            if(compare(sm, pm) == true){
+                ans.add(i - p.length());
             }
             
-            secondmap[s2.charAt(i) - 'a']++;
+            char ch = s.charAt(i);
+            sm[ch - 'a']++;
             
-            if(i >= s1.length() - 1 && isEqual(firstmap, secondmap)){
-                ans.add(i - s1.length() + 1);
-            }
+            ch = s.charAt(i - p.length());
+            sm[ch - 'a']--;
+            i++;
+        }
+        
+        //check for last window
+        if(compare(sm, pm) == true){
+            ans.add(i - p.length());
         }
         
         return ans;
+        
+        
     }
 }
