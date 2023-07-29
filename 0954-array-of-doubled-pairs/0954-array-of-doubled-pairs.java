@@ -24,16 +24,8 @@ class Solution {
             if(hm.getOrDefault(2 * val, 0) == 0){
                 return false;
             }else{
-                if(val == 0){
-                    if(hm.get(val) >= 2){
-                        hm.put(0, hm.get(0) - 2);
-                    }else{
-                        return false;
-                    }
-                }else{
                     hm.put( 2 * val, hm.get(2 * val) - 1);
                     hm.put( val, hm.get(val) - 1);
-                }
             }
         }
         
