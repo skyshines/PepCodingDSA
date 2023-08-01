@@ -21,7 +21,7 @@ class Solution {
                 boolean flag = true;
                 
                 for(int j = 9; j > sb.charAt(i) - '0'; j--){
-                    if(idx[j] != 0 && idx[j] > i){
+                    if(idx[j] > i){
                         flag = false;
                         swap(sb, i, idx[j]);
                         break;
