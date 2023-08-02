@@ -28,8 +28,10 @@ class Solution {
             }else{
                 int nextEle = nums.get(rem[2]).get(rem[1] + 1);
                 if(nextEle > max) max = nextEle;
+                rem[0] = nextEle;
+                rem[1]++;
                 
-                pq.add(new int[]{nextEle, rem[1] + 1, rem[2]});
+                pq.add(rem);
             }
         }
         
