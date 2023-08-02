@@ -1,16 +1,7 @@
 class Solution {
-    public void createRes(List<List<Integer>> res,List<List<Integer>> ans, int val){
-        
-        for(List<Integer> a : ans){
-            a.add(val);
-            res.add(a);
-        }
-    }
-    
-    
-    public List<List<Integer>> twoSum(int[] nums,int si,int ei,long target) {
+    public List<List<Integer>> twoSum(int[] nums,long target,int si) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
-        
+        int ei = nums.length - 1;
         while(si < ei){
             long sum = nums[si] + nums[ei];
             
@@ -30,42 +21,40 @@ class Solution {
         return ans;
     }
     
-    public List<List<Integer>> threeSum(int[] nums,int si,int ei,long target) {
-       List<List<Integer>> res = new ArrayList<List<Integer>>();
+    
+    public List<List<Integer>> kSumHelper(int[] nums,long target,int k,int si){
+        if(k == 2){
+            return twoSum(nums,target,si);
+        }
         
-      
+        List<List<Integer>> res = new ArrayList<>();
+        int n = nums.length;
         
-       for(int i = si; i <= ei - 2; i++){
-            if(i != si && nums[i] == nums[i - 1]) continue;
-            long tar = target - nums[i];
-            List<List<Integer>> ans = twoSum(nums,i + 1, ei,tar);
-            createRes(res,ans,nums[i]);
+        if(n - k < 0){
+            return res;
+        }
+        
+   
+        for(int i = si; i < n; i++){
+            if(i != si && nums[i] == nums[i - 1]){
+                continue;
+            }
             
+            long tar = target - nums[i];
+            
+            List<List<Integer>> subRes = kSumHelper(nums, tar, k - 1, i + 1);
+            
+            for(List<Integer> a : subRes){
+                a.add(nums[i]);
+                res.add(a);
+            }
         }
         
         return res;
     }
-        
-    
-    
-    public List<List<Integer>> fourSum(int[] nums, int t) {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
         Arrays.sort(nums);
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        long target = t * 1L;
-        int si = 0;
-        int ei = nums.length - 1;
-        
-        for(int i = si; i <= ei - 3; i++){
-            if(i != si && nums[i] == nums[i - 1]) continue;
-            long tar = target - nums[i];
-            
-            List<List<Integer>> ans = threeSum(nums,i + 1, ei,tar);
-            
-            createRes(res,ans,nums[i]);
-            
-        }
-        
-        return res;
-        
+        int k = 4;
+        return kSumHelper(nums,target*1L,k,0);
     }
 }
