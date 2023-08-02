@@ -2,7 +2,7 @@ class Solution {
     public void createRes(List<List<Integer>> res,List<List<Integer>> ans, int val){
         
         for(List<Integer> a : ans){
-            a.add(0,val);
+            a.add(val);
             res.add(a);
         }
     }
