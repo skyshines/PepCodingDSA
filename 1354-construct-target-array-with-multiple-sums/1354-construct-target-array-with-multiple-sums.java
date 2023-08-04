@@ -1,27 +1,27 @@
 class Solution {
     public boolean isPossible(int[] target) {
         PriorityQueue<Long> pq = new PriorityQueue<>(Collections.reverseOrder());
-        Long sum = 0L;
+        Long add = 0L;
         
         for(int val : target){
             pq.add(1L * val);
-            sum += val;
+            add += val;
         }
         
         while(pq.peek() != 1){
             long max = pq.remove();
+            long left = add - max;
             
-            long leftSum = sum - max;
-            
-            if(leftSum <= 0 || leftSum >= max){
+            if((left > 0 && left < max) == false){
                 return false;
             }
             
-            long rem = max % leftSum;
+            long val = max % left;
             
-            pq.add(rem == 0 ? leftSum : rem);
+            if(val == 0) pq.add(left);
+            else pq.add(val);
             
-            sum += -max + (rem);
+            add = left + val;
         }
         
         return true;
