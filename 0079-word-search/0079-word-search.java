@@ -1,47 +1,32 @@
 class Solution {
-    public boolean findWord(char[][] board,int i,int j,String word, int idx,boolean[][] visited){
-        if(i < 0 || j < 0 || i >= board.length || j >= board[0].length || visited[i][j] == true){
-            return false;
+    int[][] dir = {{-1,0},{1,0},{0,-1},{0,1}};
+    
+    public boolean findWord(char[][] board,int i,int j,String word, int idx){
+        if(idx == word.length()) return true;
+        
+        char currentCh = board[i][j];
+        board[i][j] = '@';
+        
+        for(int k = 0; k < 4; k++){
+            int row = i + dir[k][0];
+            int col = j + dir[k][1];
+            
+            if(row < 0 || col < 0 || row >= board.length || col >= board[0].length || board[row][col] == '@'){
+                continue;
+            }
+            
+            if(board[row][col] == word.charAt(idx)){
+                boolean b = findWord(board,row,col,word,idx + 1);
+                if(b == true){
+                    return true;
+                }
+            }
+            
         }
         
-        visited[i][j] = true;
-        
-        if(word.charAt(idx) == board[i][j]){
-            if(idx == word.length() - 1){
-                visited[i][j] = false;
-                return true;
-            }
+        board[i][j] = currentCh;
+        return false;
             
-            boolean top = findWord(board,i - 1,j,word,idx + 1,visited);
-            
-            if(top){
-                visited[i][j] = false; return true;
-            }
-            
-            boolean left = findWord(board,i,j - 1,word,idx + 1,visited);
-            
-            if(left){
-                visited[i][j] = false; return true;
-            }
-            
-            boolean down = findWord(board,i + 1,j,word,idx + 1,visited);
-            
-            if(down){
-                visited[i][j] = false; return true;
-            }
-            
-            boolean right = findWord(board,i,j + 1,word,idx + 1,visited);
-            
-            
-            visited[i][j] = false;
-
-            return right;            
-            
-            
-        }else{
-            visited[i][j] = false;
-            return false;
-        }
     }
     
     public boolean exist(char[][] board, String word) {
@@ -50,7 +35,7 @@ class Solution {
         for(int i = 0; i < board.length; i++){
             for(int j = 0; j < board[0].length; j++){
                 if(word.charAt(0) == board[i][j]){
-                    boolean wordFound = findWord(board,i,j,word,0,visited);
+                    boolean wordFound = findWord(board,i,j,word,1);
                     if(wordFound == true) return true;
                 }
                 
