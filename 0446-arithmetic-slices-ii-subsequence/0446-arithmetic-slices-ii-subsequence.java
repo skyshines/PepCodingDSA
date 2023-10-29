@@ -1,7 +1,7 @@
 class Solution {
     public int numberOfArithmeticSlices(int[] nums) {
         int ans = 0;
-        HashMap<Long, Integer>[] maps = new HashMap[nums.length];
+        HashMap<Integer, Integer>[] maps = new HashMap[nums.length];
         
         //initialising empty hashmap
         for(int i = 0; i < nums.length; i++){
@@ -15,11 +15,11 @@ class Solution {
                     continue;
                 }
                 
-                int apsEndingOnJ = maps[j].getOrDefault(cd, 0);
-                int apsEndingOnI = maps[i].getOrDefault(cd, 0);
+                int apsEndingOnJ = maps[j].getOrDefault((int)cd, 0);
+                int apsEndingOnI = maps[i].getOrDefault((int)cd, 0);
                 
                 ans += apsEndingOnJ;
-                maps[i].put(cd, apsEndingOnI + apsEndingOnJ + 1);
+                maps[i].put((int)cd, apsEndingOnI + apsEndingOnJ + 1);
             }
         }
         
