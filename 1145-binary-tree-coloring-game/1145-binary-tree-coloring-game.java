@@ -43,25 +43,9 @@ class Solution {
         int crst = countOfNodes(red.right);
         int cpst = n - clst - crst - 1;
         
-        int max = clst;
-        int tree = 0;
+        int max = Math.max(cpst, Math.max(clst, crst));
         
-        if(max < crst){
-            max = crst;
-            tree = 1;
-        }
+        return max > n / 2;
         
-        if(max < cpst){
-            max = cpst;
-            tree = 2;
-        }
-        
-        if(tree == 0){
-            return clst > cpst + crst;
-        }else if(tree == 1){
-            return crst > clst + cpst;
-        }else{
-            return cpst > clst + crst;
-        }
     }
 }
