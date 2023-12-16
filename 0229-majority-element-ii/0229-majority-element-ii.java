@@ -8,26 +8,40 @@ class Solution {
         return freq > (arr.length / 3);
         
     }
+
     public List<Integer> majorityElement(int[] nums) {
         List<Integer> ans = new ArrayList<>();
+        int count1 = 0;
+        int count2 = 0;
+        int val1 = 0, val2 = 0;
         
-        int val1 = 0,count1 = 0;
-        int val2 = 0,count2 = 0;
-        
-        for(int num : nums){
-            if((count1 == 0 && count2 == 0) || (count1 == 0 && count2 != 0 && val2 != num)){
-                val1 = num;
+        for(int val : nums){
+            if(count1 == 0 && count2 == 0){
                 count1 = 1;
-            }else if(val1 == num){
-                count1++;
+                val1 = val;
+            }else if(count1 == 0){
+                if(val == val2){
+                    count2++;
+                }else{
+                    count1 = 1;
+                    val1 = val;
+                }
             }else if(count2 == 0){
-                count2 = 1;
-                val2 = num;
-            }else if(val2 == num){
-                count2++;
+                if(val == val1){
+                    count1++;
+                }else{
+                    count2 = 1;
+                    val2 = val;
+                }
             }else{
-                count1--;
-                count2--;
+                if(val1 == val){
+                    count1++;
+                }else if(val2 == val){
+                    count2++;
+                }else{
+                    count1--;
+                    count2--;
+                }
             }
         }
         
@@ -44,5 +58,7 @@ class Solution {
         }
         
         return ans;
+        
+        
     }
 }
