@@ -20,7 +20,6 @@ class Solution {
                     break;
                 }else{
                     if(ans < i - j) ans = i - j;
-                    System.out.println(i + " " + j);
                 }
             }
             
