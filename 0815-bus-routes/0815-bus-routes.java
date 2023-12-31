@@ -36,7 +36,7 @@ class Solution {
             {
                 int busStop = queue.remove();
                 
-                busStopVisited.add(busStop);
+                //busStopVisited.add(busStop);
                 
                 if(busStop == target){
                     return lev;
@@ -50,7 +50,7 @@ class Solution {
                             if(busStopVisited.contains(stop) == true) continue;
                             
                             queue.add(stop);
-                            //busStopVisited.add(stop);
+                            busStopVisited.add(stop);
                         }
                         
                         busVisited.add(bus);
