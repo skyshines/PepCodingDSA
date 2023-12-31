@@ -13,6 +13,10 @@ class Solution {
             Bus++;
         }
         
+        if(source == target) return 0;
+        
+        if(hm.containsKey(source) == false || hm.containsKey(target) == false) return -1;
+        
         Queue<Integer> queue = new ArrayDeque<>(); // BFS
         
         
@@ -21,7 +25,7 @@ class Solution {
         HashSet<Integer> busStopVisited = new HashSet<>();
         
         queue.add(source);
-        busStopVisited.add(source); //marking visisted and adding in BFS
+        //busStopVisited.add(source); //marking visisted and adding in BFS
         
         int lev = 0;
         
@@ -31,6 +35,8 @@ class Solution {
             for(int i = 0;  i < size; i++)
             {
                 int busStop = queue.remove();
+                
+                busStopVisited.add(busStop);
                 
                 if(busStop == target){
                     return lev;
@@ -44,7 +50,7 @@ class Solution {
                             if(busStopVisited.contains(stop) == true) continue;
                             
                             queue.add(stop);
-                            busStopVisited.add(stop);
+                            //busStopVisited.add(stop);
                         }
                         
                         busVisited.add(bus);
