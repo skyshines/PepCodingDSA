@@ -2,7 +2,8 @@ class Solution {
     int[][] dirs = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
     
     public void dfs(int[][] grid, int row, int col,Queue<int[]> queue,boolean[][] visited){
-        visited[row][col] = true; // visisted
+        //visited[row][col] = true; // visisted
+        grid[row][col] = -1;
         queue.add(new int[]{row, col});
         
         for(int i = 0; i < 4; i++){
@@ -46,13 +47,13 @@ class Solution {
                     int rowdash = p[0] + dirs[i][0];
                     int coldash = p[1] + dirs[i][1];
 
-                    if(rowdash < 0 || coldash < 0 || rowdash >= grid.length || coldash >= grid[0].length || visited[rowdash][coldash] == true){
+                    if(rowdash < 0 || coldash < 0 || rowdash >= grid.length || coldash >= grid[0].length || grid[rowdash][coldash] == -1){
                         continue;
                     }
 
                     if(grid[rowdash][coldash] == 0){
                         queue.add(new int[]{rowdash, coldash});
-                        visited[rowdash][coldash] = true;
+                        grid[rowdash][coldash] = -1;
                     }else if(grid[rowdash][coldash] == 1){
                         return lev;
                     }
