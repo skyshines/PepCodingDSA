@@ -82,6 +82,8 @@ class GFG {
 
 //User function Template for Java
 
+//User function Template for Java
+
 class Solution
 {
     public String findOrder(String [] dict, int N, int K)
@@ -167,11 +169,13 @@ class Solution
             }
         }
         
-        if(countOfCharacters == countOfRemovedElements){
-            return sb.toString();
-        }else{
-            return "";
-        }
+        // if(countOfCharacters == countOfRemovedElements){
+            
+        // }else{
+        //     return "";
+        // }
+        
+        return sb.toString();
         
     }
 }
