@@ -82,6 +82,8 @@ class GFG {
 
 //User function Template for Java
 
+//User function Template for Java
+
 class Solution
 {
     public String findOrder(String [] dict, int N, int K)
@@ -105,6 +107,7 @@ class Solution
         for(int i = 0; i < dict.length - 1; i++){
             String curr = dict[i];
             String next = dict[i + 1];
+            boolean mismatchFound = false;
             
             int len = Math.min(curr.length(), next.length());
             
@@ -124,11 +127,15 @@ class Solution
                         indegree.put(ch2, indegree.get(ch2) + 1);
                         graph.put(ch1, hs);
                     }
-                    
+                    mismatchFound = true;
                     break;
                 }
                 
                 
+            }
+            
+            if(mismatchFound == false && curr.length() > next.length()){
+                    return "";
             }
         }
         
@@ -161,6 +168,14 @@ class Solution
                 }
             }
         }
+        
+        // if(countOfCharacters == countOfRemovedElements){
+            
+        // }else{
+        //     return "";
+        // }
+        
         return sb.toString();
+        
     }
 }
