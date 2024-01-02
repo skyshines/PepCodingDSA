@@ -9,13 +9,13 @@ class Solution {
         while(i < n){
             st.push(pushed[i++]);
             
-            while(st.size() > 0 && j < n && st.peek() == popped[j]){
+            while(st.size() > 0 && st.peek() == popped[j]){
                 st.pop();
                 j++;
             }
         }
         
-        while(st.size() > 0 && j < n){
+        while(st.size() > 0){
             if(st.peek() == popped[j]){
                 st.pop();
                 j++;
