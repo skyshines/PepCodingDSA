@@ -10,6 +10,11 @@ class MyCircularDeque {
         Node(){
             data = 0;
         }
+        
+        public void delete(){
+            prev.next = next;
+            next.prev = prev;
+        }
     }
     
     Node front,rear;
@@ -69,8 +74,7 @@ class MyCircularDeque {
         
         Node node = front.next;
         
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
+        node.delete();
         
         size--;
         
@@ -83,10 +87,7 @@ class MyCircularDeque {
         }
         
         Node node = rear.prev;
-        
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
-        
+        node.delete();
         size--;
         
         return true;
