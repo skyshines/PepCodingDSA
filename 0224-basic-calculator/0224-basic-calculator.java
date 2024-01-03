@@ -16,9 +16,11 @@ class Solution {
                     st.push(sign);
                     
                     sum = 0; sign = 1; //reseting sum and sign
+                    
                 }else if(ch == ')'){
                     sum = sum * (st.pop()); // multiplying with sign
                     sum += st.pop(); // adding the sum
+    
                 }else if(Character.isDigit(ch)){
                     //extracting the val
                     int val = 0;
