@@ -9,7 +9,7 @@
  */
 class Solution {
     public void Kdown(TreeNode node,int k,TreeNode block,List<Integer> ans){
-        if(node == null || block == node){
+        if(node == null || k < 0 ||block == node){
             return;
         }
         
@@ -22,38 +22,33 @@ class Solution {
         Kdown(node.right,k - 1, block, ans);
     }
     
-    public ArrayList<TreeNode> nodeToRootPath(TreeNode node,int data){
-        if(node == null) return null;
+    public int distanceK(TreeNode node,int data,int k,List<Integer> ans){
+        if(node == null) return -1;
         
         if(node.val == data){
-            ArrayList<TreeNode> list = new ArrayList<>();
-            list.add(node);
-            return list;
+            Kdown(node,k - 0,null,ans);
+            return 1; // return values depicts the distance in terms of how much eedges, is a child away from its parent
         }
         
-        ArrayList<TreeNode> left = nodeToRootPath(node.left, data);
-        if(left != null){
-            left.add(node);
-            return left;
+        int left = distanceK(node.left,data,k,ans);
+        
+        if(left > 0){
+            Kdown(node,k - left,node.left,ans);
+            return left + 1;
         }
         
-        ArrayList<TreeNode> right = nodeToRootPath(node.right, data);
-        if(right != null){
-            right.add(node);
-            return right;
+        int right = distanceK(node.right,data,k,ans);
+        
+        if(right > 0){
+            Kdown(node, k - right,node.right,ans);
+            return right + 1;
         }
         
-        return null;
+        return -1;
     }
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        ArrayList<TreeNode> ntr = nodeToRootPath(root, target.val);
-        
         List<Integer> ans = new ArrayList<>();
-        
-        for(int i = 0; i < ntr.size() && k >= 0; i++){
-            Kdown(ntr.get(i),k--,i == 0 ? null : ntr.get(i - 1), ans);
-        }
-        
+        distanceK(root,target.val,k,ans);
         return ans;
     }
 }
