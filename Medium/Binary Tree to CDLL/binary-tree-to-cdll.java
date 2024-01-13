@@ -143,37 +143,35 @@ class Node{
 */
 class Solution
 { 
-    //Function to convert binary tree into circular doubly linked list.
-    Node prev;
-    
-    public void bstToCircularDLL(Node node){
-        if(node == null) return;
-        
-        bstToCircularDLL(node.left);
-        
-        prev.right = node;
-        node.left = prev;
-        
-        prev = node;
-        
-        bstToCircularDLL(node.right);
+    public void pushInStack(LinkedList<Node> st,Node node){
+        while(node != null){
+            st.addFirst(node);
+            node = node.left;
+        }
     }
     
     Node bTreeToClist(Node root)
     {
-        //your code here
-        Node dummy = new Node(-1);
-	    prev = dummy;
-	    bstToCircularDLL(root);
-	    
-	    Node head = dummy.right;
-	    head.left = null;
-	    
-	    //circular
-	    head.left = prev;
-	    prev.right = head;
-	    
-	    return head;
+        Node dummyNode = new Node(-1);
+        Node prev = dummyNode;
+        
+        LinkedList<Node> st = new LinkedList<>();
+        pushInStack(st,root);
+        
+        while(st.size() > 0){
+            Node curr = st.removeFirst();
+            
+            prev.right = curr;
+            curr.left = prev;
+            prev = curr;
+            
+            pushInStack(st,curr.right);
+        }
+        
+        Node head = dummyNode.right;
+        head.left = prev;
+        prev.right = head;
+        return head;
     }
     
 }
