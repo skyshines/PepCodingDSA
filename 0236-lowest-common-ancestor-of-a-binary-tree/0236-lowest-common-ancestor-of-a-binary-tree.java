@@ -19,7 +19,12 @@ class Solution {
         }
         
         left = lowestCommonAncestor_(node.left,p,q);
+        
+        if(LCA != null) return true;
+        
         right = lowestCommonAncestor_(node.right,p,q);
+        
+        if(LCA != null) return true;
         
         if(self && left || self && right || left && right){
             if(LCA == null) LCA = node;
