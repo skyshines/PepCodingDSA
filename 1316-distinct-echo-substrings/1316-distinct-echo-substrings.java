@@ -2,9 +2,11 @@ class Solution {
     public int distinctEchoSubstrings(String text) {
         HashSet<String> hs = new HashSet<>();
         
-        for(int i = 1; i <= text.length() / 2; i++){
+        //outer loop for length of a in 'a + a'
+        //inner loop will check if barabar hai k nhi and kitne bar barabr mile
+        for(int i = 1; i <= text.length() / 2; i++){ //O(N / 2)
             int count = 0;
-            for(int l = 0, r = i; r < text.length(); l++,r++){
+            for(int l = 0, r = i; r < text.length(); l++,r++){ // O(N)
                 if(text.charAt(l) == text.charAt(r)){
                     count++;
                 }else{
@@ -13,13 +15,15 @@ class Solution {
                 
                 
                 if(count == i){
-                    hs.add(text.substring(l + 1,r + 1));
+                    hs.add(text.substring(l,r)); // O(N)
                     count--;
                 }
             }
         }
         
         return hs.size();
+
+        // time complexity O(N^3)
     }
 }
 /*
