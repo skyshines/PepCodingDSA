@@ -41,7 +41,7 @@ class Solution {
             int ans = (int)1e8;
             
             //we dont need willITravelToday function as we used it to reduce useless calls\
-            if(willITravelToday(cday, days)){
+            if(true || willITravelToday(cday, days)){
                 ans = dp[cday + 1] + costs[0]; //helper(cday + 1,days,costs,dp) + costs[0];
 
                 ans = Math.min(ans, dp[cday + 7] + costs[1]);//Math.min(ans, helper(cday + 7,days, costs, dp) + costs[1]);
@@ -61,6 +61,7 @@ class Solution {
         //memoization
         //since only cday varying it can max go to 365 days
         //but since ticket can be purch
-        return tabulation(days, cost);
+        // return tabulation(days, cost);
+        return helper(days[0],days,cost,new Integer[400]);
     }
 }
