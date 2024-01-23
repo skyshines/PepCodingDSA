@@ -32,7 +32,7 @@ class Solution {
         //memoization
         //since only cday varying it can max go to 365 days
         //but since ticket can be purch
-        Integer[] dp = new Integer[400];
+        Integer[] dp = new Integer[366];
         return helper(days[0], days, cost, dp);
     }
 }
