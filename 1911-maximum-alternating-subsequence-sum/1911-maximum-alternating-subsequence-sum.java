@@ -1,7 +1,25 @@
 class Solution {
     public long maxAlternatingSum(int[] nums) {
         long[][] dp = new long[nums.length][2];
-        return memoization(0,nums,0,dp);
+        return tabulation(nums);
+    }
+    
+    public long tabulation(int[] nums){
+        long[] endEven = new long[nums.length]; //max sum of subsequence ending at even index
+        long[] endOdd = new long[nums.length]; //max sum of subsequnce ending at odd index
+        
+        //base case
+        endEven[0] = nums[0];
+        endOdd[0] = 0;
+        
+        //include exclude technique
+        
+        for(int i = 1; i < nums.length; i++){
+            endEven[i] = Math.max(endEven[i - 1], endOdd[i - 1] + nums[i]);
+            endOdd[i] = Math.max(endOdd[i - 1], endEven[i - 1] - nums[i]);
+        }
+        
+        return Math.max(endEven[nums.length - 1],endOdd[nums.length - 1]);
     }
     
     public long memoization(int idx,int[] nums,int curr,long[][] dp){
